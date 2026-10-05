@@ -1,0 +1,12 @@
+bin/
+obj/
+dist/
+release-*/
+artifacts/
+logs/
+.vs/
+*.user
+*.suo
+*.zip
+data/generated_summaries.zh-CN.json
+data/overlay_settings.json

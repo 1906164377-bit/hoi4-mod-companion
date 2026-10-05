@@ -1,0 +1,182 @@
+<Window x:Class="Hoi4ModOverlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="HOI4 模组简报"
+        Width="560" Height="650"
+        MinWidth="460" MinHeight="360"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="False"
+        Background="#171A17"
+        ShowInTaskbar="True"
+        ShowActivated="True"
+        WindowStartupLocation="CenterScreen"
+        Topmost="False"
+        FontFamily="Microsoft YaHei UI"
+        Foreground="#E4E0D5">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBrush" Color="#E4E0D5"/>
+        <SolidColorBrush x:Key="MutedBrush" Color="#A6A79F"/>
+        <SolidColorBrush x:Key="DimBrush" Color="#71756F"/>
+        <SolidColorBrush x:Key="GoodBrush" Color="#82906D"/>
+
+        <LinearGradientBrush x:Key="HeaderBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#3A3E39" Offset="0"/>
+            <GradientStop Color="#242824" Offset="0.48"/>
+            <GradientStop Color="#151815" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="RowBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#30342F" Offset="0"/>
+            <GradientStop Color="#242824" Offset="0.42"/>
+            <GradientStop Color="#1B1F1B" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="SourceButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2A2E29"/>
+            <Setter Property="Foreground" Value="#D5CFBD"/>
+            <Setter Property="BorderBrush" Value="#756C52"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#3A4038"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#A09167"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="#090B09" BorderThickness="2" Background="#171A17">
+        <Border BorderBrush="#70684F" BorderThickness="1">
+            <Grid Background="#171A17">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- 独立窗口标题栏：用于拖动窗口。 -->
+                <Border Grid.Row="0" Background="{StaticResource HeaderBrush}" BorderBrush="#111311" BorderThickness="0,0,0,1"
+                        Cursor="SizeAll" ToolTip="按住左键拖动悬浮窗" MouseLeftButtonDown="DragHandle_MouseLeftButtonDown">
+                    <Grid Margin="10,0,9,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="#8B7D5B" Margin="0,6,0,6"/>
+                        <TextBlock Grid.Column="1" Margin="9,0,0,0" VerticalAlignment="Center"
+                                   Text="模组简报" FontWeight="Bold" FontSize="13" Foreground="#EEE9DB"/>
+                        <TextBlock x:Name="HoverHintText" Grid.Column="2" Margin="12,0,8,0" VerticalAlignment="Center"
+                                   Text="独立窗口 · 可拖动 / 可调整大小" FontSize="10" Foreground="#8D9088"/>
+                        <Border Grid.Column="3" BorderBrush="#655D48" BorderThickness="1" Background="#191C19"
+                                Padding="8,2" VerticalAlignment="Center">
+                            <TextBlock x:Name="ModCountText" Text="00 MODS" FontFamily="Bahnschrift SemiCondensed"
+                                       FontWeight="Bold" FontSize="10.5" Foreground="#D7CFB8"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- 独立窗口始终保持展开。 -->
+                <Grid x:Name="ExpandedContent" Grid.Row="1" Visibility="Visible" Background="#151815">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Background="#20231F">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" FontSize="10.5"
+                                   Foreground="{StaticResource MutedBrush}" Text="按游戏实际载入顺序 · 点击条目查看详情"/>
+                        <TextBlock x:Name="UpdatedText" Grid.Column="1" Margin="8,0,12,0" VerticalAlignment="Center"
+                                   FontFamily="Bahnschrift" FontSize="9.5" Foreground="{StaticResource DimBrush}" Text="--:--:--"/>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                                  Background="#111411" Padding="7,7,7,5">
+                        <ItemsControl x:Name="ModsItemsControl">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#4E5048" BorderThickness="1" Margin="0,0,0,5" Background="{StaticResource RowBrush}">
+                                        <Expander Background="Transparent" Foreground="{StaticResource TextBrush}">
+                                            <Expander.Header>
+                                                <Grid MinHeight="66">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="90"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Grid.Column="0" BorderBrush="#51554D" BorderThickness="0,0,1,0" Background="#20241F">
+                                                        <TextBlock Text="{Binding OrderLabel}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                   FontFamily="Bahnschrift SemiCondensed" FontSize="16" FontWeight="Bold" Foreground="#9D9270"/>
+                                                    </Border>
+                                                    <StackPanel Grid.Column="1" Margin="10,7,9,7">
+                                                        <TextBlock Text="{Binding Name}" FontFamily="Bahnschrift SemiCondensed, Microsoft YaHei UI"
+                                                                   FontWeight="SemiBold" FontSize="13.5" Foreground="#F0ECE0" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding SummaryZh}" Margin="0,3,0,0" FontSize="11" LineHeight="16"
+                                                                   Foreground="#C2C1BA" TextWrapping="Wrap" MaxWidth="370"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="2" Margin="4,7,8,7" VerticalAlignment="Top">
+                                                        <TextBlock Text="{Binding VersionLabel}" HorizontalAlignment="Right" FontFamily="Bahnschrift"
+                                                                   FontSize="9" Foreground="#969990" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding WorkshopLabel}" Margin="0,3,0,0" HorizontalAlignment="Right"
+                                                                   FontFamily="Bahnschrift" FontSize="8.5" Foreground="#696D68"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Expander.Header>
+                                            <Border BorderBrush="#4D5049" BorderThickness="0,1,0,0" Background="#171A17" Padding="50,8,11,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding DetailZh}" FontSize="11" LineHeight="17" Foreground="#BDBDB6" TextWrapping="Wrap"/>
+                                                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                                        <Button Content="打开模组来源" Style="{StaticResource SourceButtonStyle}"
+                                                                Tag="{Binding SourceUrl}" Click="OpenSource_Click"/>
+                                                        <TextBlock Text="中文简述已缓存" Margin="10,0,0,0" VerticalAlignment="Center"
+                                                                   FontSize="9.5" Foreground="#7F8875"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </Expander>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="2" Background="#101210" BorderBrush="#4A493F" BorderThickness="0,1,0,0">
+                        <Grid Margin="10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center" FontSize="9" Foreground="#777A73"
+                                       Text="独立窗口 · 随 HOI4 启动和退出"/>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="9" Foreground="#777A73"
+                                       Text="dlc_load.json" FontFamily="Bahnschrift"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

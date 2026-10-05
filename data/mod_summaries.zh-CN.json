@@ -1,0 +1,72 @@
+{
+  "3369706283": {
+    "summary": "强化原版 AI 的战略、军队运用与生产决策，让电脑国家更积极、更有挑战性。",
+    "detail": "属于 AI 行为增强类模组。它会让电脑国家更主动地组织战争与军队，因此如果同时启用其他大幅修改 AI、兵种或单位设计的模组，需要留意兼容性。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=3369706283"
+  },
+  "1915367290": {
+    "summary": "限制 AI 爆兵：主要国家约 250 个师、小国约 40 个师，减少后期卡顿。",
+    "detail": "作者说明它能与原版以及多种大型模组共用，主要作用是限制 AI 师数量，降低后期无意义的单位膨胀。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=1915367290"
+  },
+  "846066944": {
+    "summary": "让玩家直接掌控自己参与战争的和平会议，避免 AI 随意分地。",
+    "detail": "当玩家参与战争时，和平会议由玩家直接控制；没有玩家参与的战争仍按原版方式结算。作者说明它只修改和平会议 AI。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=846066944"
+  },
+  "3243893615": {
+    "summary": "游戏内州转移工具，适合修边界、多人局分地和处理地图归属。",
+    "detail": "这是 State Transfer Tool MP 的更新版，作者说明兼容多数模组，并提供隐藏工具按钮的快捷键。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=3243893615"
+  },
+  "2913150560": {
+    "summary": "综合工具箱：调试、修和平协议、改州与国家状态，也可用于作弊或修档。",
+    "detail": "Toolpack 的持续更新版本。作者把它定位为调试、修复和平协议和快速修改游戏状态的综合工具。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=2913150560"
+  },
+  "2048998725": {
+    "summary": "新增外交操作：可以把已经派出的志愿军主动召回。",
+    "detail": "原版 Recall Volunteers 的核心功能很单纯：允许玩家通过外交动作召回志愿军。作者说明 AI 不会使用该动作，并支持多人游戏。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=2048998725"
+  },
+  "2277379680": {
+    "summary": "把陆军、海军和空军经验上限提高到 9999，减少经验溢出浪费。",
+    "detail": "这是一个很小的数值模组，核心目的就是把经验值上限提高到 9999。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=2277379680"
+  },
+  "1229084232": {
+    "summary": "把事件窗口里的黑白历史照片替换成彩色图片，纯视觉增强。",
+    "detail": "作者说明它只替换事件图片，兼容性很高，并标注为成就兼容。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=1229084232"
+  },
+  "3782230598": {
+    "summary": "调整战略视图和部分界面，让部队状态更容易查看、整理和指挥。",
+    "detail": "这是 Strategic View Adjustments 的 1.19 修复版，目标是改善查看与组织部队时的界面信息呈现。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=3782230598"
+  },
+  "2993766165": {
+    "summary": "偏史实与沉浸的海军重做：改进舰船设计、海军编制、图标和 AI 造舰逻辑。",
+    "detail": "Vanilla Navy Rework 尽量保留原版海军框架，同时增加更合理的史实舰船设计、海军编成和 AI 海军生产策略，偏 RP 与沉浸体验。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=2993766165"
+  },
+  "3544025267": {
+    "summary": "为英、美、德、苏加入上千条单位选择与战斗语音，增强战场听觉沉浸感。",
+    "detail": "作者列出的当前内容包括英国、德国、苏联和美国的大量国家专属语音，素材来自多款经典战争策略游戏。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=3544025267"
+  },
+  "3747059757": {
+    "summary": "自动管理资源贸易：每周检查钢、橡胶、石油、铝、钨、铬缺口并建立真实进口路线，也能在燃油不足时自动增加石油进口。",
+    "detail": "会按玩家指定的优先伙伴、附庸、阵营盟友、意识形态、邻国和外交关系为贸易对象打分并选择供应国。普通资源自动贸易与燃油应急贸易可以分别开关；燃油低于约 25% 时会逐步增加石油进口，恢复到约 50% 后重置。只处理玩家国家，不直接给资源数值。",
+    "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=3747059757"
+  },
+  "3698041064": {
+    "summary": "自动升级情报机构：可以完全自动升级，也可以先排好升级队列，让机构建设不再需要反复手点。",
+    "detail": "创建情报机构后可以开启自动升级或只执行玩家指定的队列。自动化仍会正常占用所需民用工厂、等待原版升级时间，并遵守升级前置条件；队列支持调整顺序、多级升级一次加入等操作，主要用途是避免忘记升级情报机构。",
+    "source": "https://steamcommunity.com/workshop/filedetails/?id=3698041064"
+  },
+  "name:lazy navy": {
+    "summary": "低微操海军助手：自动准备推荐舰船设计并按舰队目标补充真实生产批次，把重复的设计和造舰操作交给工具。",
+    "detail": "Lazy Navy 会根据已经研究的船体生成推荐设计，并提供均衡舰队、狼群、护航优先、航母优先等策略；每月检查驱逐舰、潜艇、轻巡和航母数量，低于目标时才追加有限生产批次。它不会免费送科技或舰船，也不会替玩家自动分配海域、巡逻、打击舰队或护航任务，战略部署仍由玩家决定。",
+    "source": "E:\\CodexProjects\\lazy-navy\\docs\\LAZY_NAVY_V01.md"
+  }
+}
